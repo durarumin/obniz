@@ -1,0 +1,36 @@
+<!-- HTML Example -->
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://obniz.io/js/jquery-3.2.1.min.js"></script>
+  <script src="https://unpkg.com/obniz@1.13.1/obniz.js"></script>
+</head>
+<body>
+
+  <button id="on">LED ON</button>
+  <button id="off">LED OFF</button>
+
+<div id="obniz-debug"></div>
+<h1>LED TEST</h1>
+
+<script>
+  var obniz = new Obniz("6280-7881");
+  obniz.onconnect = async function () {
+    var led1 = obniz.wired("LED", {anode:0, cathode:1});
+    var led2 = obniz.wired("LED", {anode:2, cathode:3});
+    $("#on").on("click",function(){
+      led1.blink(100);
+      led2.blink(100);
+    })
+    $("#off").on("click",function(){
+      led1.off();
+      led2.off();
+    })
+  }
+
+</script>
+  
+
+
+</body>
+</html>
